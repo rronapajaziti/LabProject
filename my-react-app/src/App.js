@@ -1,15 +1,14 @@
-import React from 'react'
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import 'bootstrap/dist/css/bootstarap.min.css';
+import Sidebar from "./Sidebar";
 
-import Sidebar from './Sidebar';
-
-function App(){
+function App() {
   return (
     <div>
       <Sidebar></Sidebar>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
