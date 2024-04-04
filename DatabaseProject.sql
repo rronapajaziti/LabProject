@@ -1,1 +1,2 @@
 create database LabProjekti
+execute LabProjekti
