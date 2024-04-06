@@ -31,6 +31,10 @@ function Sidebar(){
                     <span>Kategorite</span>
                 </a>
                 <a className='list-group-item py-2'>
+                    <i class="bi bi-vector-pen fs-5 me-2"></i>
+                    <span>Autoret</span>
+                </a>
+                <a className='list-group-item py-2'>
                 <i class="bi bi-bookmark-star-fill fs-5 me-2"></i>
                     <span>Aksesoret</span>
                 </a>
