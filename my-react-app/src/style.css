@@ -1,0 +1,34 @@
+.sidebar {
+    width: 250px;
+    height: 1900vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+.list-group a{
+    height: auto;
+    background-color:#303539;
+    color: #f4f4f4;
+    border: none;
+}
+
+.list-group a:hover{
+    background-color: #1D6A96;
+    color: #f4f4f4;
+    transition: 0.7s;
+}
+
+.custom-bg {
+    background-color:  #f4f4f4; 
+  }
+
+.brand-name{
+    color: #1D6A96;
+}
+.sidebarColor-bg{
+    background-color: #303539;
+}
+
+.col-2{
+    width: 300px;
+}
