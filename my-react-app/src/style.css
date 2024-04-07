@@ -32,3 +32,16 @@
 .col-2{
     width: 300px;
 }
+
+.btn-search{
+    background-color: #1D6A96;
+    color: #f4f4f4;
+    width: 150px;
+    border: none;
+}
+
+.btn-search:hover{
+    background-color: #f4f4f4;
+    color:#1D6A96;
+    transition: 0.5s;
+}

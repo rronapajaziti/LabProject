@@ -4,7 +4,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './style.css'
 
 
-import Sidebar from "./Sidebar";
+import Sidebar from './Sidebar'; // Correct import path for Sidebar
+import Home from './Home'; // Correct import path for Home
+
 
 function App() {
   return (
@@ -13,8 +15,8 @@ function App() {
         <div className='col-2 min-vh-100 sidebarColor-bg'>
           <Sidebar />
         </div>
-        <div className="col-auto">
-
+        <div className="col">
+          <Home />
         </div>
       </div>
 
