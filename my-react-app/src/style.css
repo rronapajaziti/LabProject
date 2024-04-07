@@ -45,3 +45,12 @@
     color:#1D6A96;
     transition: 0.5s;
 }
+
+col-2 {
+    transition: 0.5s; /* Adjust transition duration and easing as needed */
+  }
+  
+  /* Define CSS class for hiding the sidebar */
+  .sidebar-hidden {
+    transform: translateX(-250px); /* Adjust the value based on your sidebar width */
+  }
