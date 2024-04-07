@@ -1,31 +1,48 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import './style.css'
-import Sidebar from './Sidebar'; 
-import Home from './Home'; 
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./style.css";
+import Sidebar from "./Components/Sidebar";
+import Home from "./Home";
+import Books from "./Dashboard-Pages/Books";
+import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   const [toggle, setToggle] = useState(true);
 
-  const Toggle = () => { 
+  const Toggle = () => {
     setToggle(!toggle);
-  }
+  };
 
   return (
-    <div className='container-fluid custom-bg min-vh-100'>
-      <div className='row'>
-        {toggle && <div className='col-4 col-md-2 min-vh-100 sidebarColor-bg position-fixed'>
+    <div className="container-fluid custom-bg min-vh-100">
+      <div className="row">
+        {toggle && (
+          <div className="col-4 col-md-2 min-vh-100 sidebarColor-bg position-fixed">
             <Sidebar />
-          </div>}
+          </div>
+        )}
         {toggle && <div className="col-4 col-md-2"></div>}
         <div className="col">
-          <Home Toggle={Toggle} />
+          <Routes>
+            <Route path="/" element={<Home Toggle={Toggle} />} />
+            {/* <Route path="/Staff" element={<Staff />} /> */}
+            <Route path="/Books" element={<Books />} />
+            {/* <Route path="/Categories" element={<Categories />} />
+            <Route path="/Authors" element={<Authors />} />
+            <Route path="/Acessories" element={<Acessories />} /> */}
+          </Routes>
         </div>
       </div>
     </div>
   );
 }
 
-export default App;
-
+export default function Root() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
