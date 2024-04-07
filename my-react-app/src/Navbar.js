@@ -17,20 +17,20 @@ function Navbar({Toggle}) {
 //   }, []);
 
   return (
-    <nav className="navbar navbar-expand-am navbar-light bg- px-3">
+    <nav className="navbar navbar-expand-sm px-3 fs-4 me-3">
       <i className="navbar-brand bi bi-justify-left fs-4" onClick={Toggle}></i>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i className='bi bi-justify'></i>
       </button>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <div className="collapse navbar-collapse " id="navbarSupportedContent">
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li className="nav-item dropdown">
+          <li className="nav-item dropdown ">
             <a className="nav-link dropdown-toggle" href="a"  id="navbarDropdown" data-bs-toggle="dropdown" 
             aria-haspopup='false' aria-expanded="true">
               Readtopia
             </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="#">Profile</a>
+            <div className="dropdown-menu sidebarColor-bg me-2" aria-labelledby="navbarDropdown">
+                <a className="dropdown-item " href="#">Profile</a>
                 <a className="dropdown-item" href="#">Settings</a>
                 <a className="dropdown-item" href="#">Log out</a>
                 <hr className="dropdown-divider" />

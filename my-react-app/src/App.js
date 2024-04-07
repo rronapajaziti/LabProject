@@ -6,7 +6,7 @@ import Sidebar from './Sidebar';
 import Home from './Home'; 
 
 function App() {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   const Toggle = () => { 
     setToggle(!toggle);

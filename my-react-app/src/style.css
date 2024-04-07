@@ -46,3 +46,13 @@
     transition: 0.5s;
 }
 
+.dropdown-menu a{
+    color: #f4f4f4;
+}
+
+.dropdown-menu a:hover{
+    background-color: #1D6A96;
+    color: #f4f4f4;
+    transition: 0.6s;
+}
+
