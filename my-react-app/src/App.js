@@ -15,10 +15,10 @@ function App() {
   return (
     <div className='container-fluid custom-bg min-vh-100'>
       <div className='row'>
-        {toggle && <div className='col-2 min-vh-100 sidebarColor-bg position-fixed'>
+        {toggle && <div className='col-4 col-md-2 min-vh-100 sidebarColor-bg position-fixed'>
             <Sidebar />
           </div>}
-        {toggle && <div className="col-2"></div>}
+        {toggle && <div className="col-4 col-md-2"></div>}
         <div className="col">
           <Home Toggle={Toggle} />
         </div>

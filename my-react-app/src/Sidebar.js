@@ -4,14 +4,14 @@ import './style.css'
 
 function Sidebar(){
     return (
-        <div className='sidebar p-2' style={{ height: '100vh' }}>
+        <div className='sidebar p-0.5' style={{ height: '100vh' }}>
             <div className='me-2'>
                 <i className='bi bi-bootstarap-fill me-2 fs-4'></i>
                 <span className='brand-name fs-4'>Readopia</span>
             </div>
             <hr className='text-dark'/>
             <div className='list-group listgroup-flush'>
-                <a className='list-group-item py-2'>
+                <a className='list-group-item py-3'>
                     <i  id= 'dashboardname' className='bi bi-speedometer2 fs-5 me-3'></i>
                     <span className='fs-5'>Dashboard</span>
                 </a>
