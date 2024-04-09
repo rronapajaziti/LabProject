@@ -11,8 +11,8 @@ using WebApplication1.Models;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(BooksContext))]
-    [Migration("20240409004004_initial")]
-    partial class initial
+    [Migration("20240409212315_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace WebApplication1.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("WebApplication1.Models.Books", b =>
+            modelBuilder.Entity("WebApplication1.Models.Book", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()

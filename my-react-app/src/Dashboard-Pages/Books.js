@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment } from "react";
 import Table from "react-bootstrap/Table";
 import Modal from "react-bootstrap/Modal";
 import { Row, Col, Form, Button } from "react-bootstrap";
-// import Container from "react-bootstrap/Container";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
@@ -45,10 +44,10 @@ const Books = () => {
   //edit
   const handleEdit = (id) => {
     handleShow();
+    seteditId(id);
     axios
       .get(`https://localhost:7200/api/Book/${id}`)
       .then((result) => {
-        seteditId(id);
         setEditISBN(result.data.isbn);
         setEditImage(result.data.image);
         setEditTitle(result.data.title);
@@ -59,10 +58,11 @@ const Books = () => {
         setEditPrice(result.data.price);
         setEditQuantity(result.data.quantity);
         setEditDateOfAddition(result.data.dataOfadition);
+        seteditId(id);
       })
 
       .catch((error) => {
-        toast.error("Failed to delete Book: " + error.message);
+        toast.error("Failed to get  Book: " + error.message);
       });
   };
 
@@ -96,7 +96,7 @@ const Books = () => {
       Description: editDescription,
       Price: editPrice,
       Quantity: editQuantity,
-      DateOfAddition: editDateOfAddition,
+      DataOfadition: editDateOfAddition,
     };
     axios
       .put(url, data)
@@ -202,6 +202,18 @@ const Books = () => {
         <Modal.Body>
           <Form onSubmit={handleUpdate}>
             <Row>
+              <Col>
+                <Form.Group controlId="formISBN">
+                  <Form.Label>ID</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="ID"
+                    name="id"
+                    value={editId}
+                    readOnly
+                  />
+                </Form.Group>
+              </Col>
               <Col>
                 <Form.Group controlId="formISBN">
                   <Form.Label>ISBN</Form.Label>

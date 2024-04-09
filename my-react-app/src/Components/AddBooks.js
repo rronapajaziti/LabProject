@@ -28,7 +28,7 @@ const AddBooks = () => {
         setData(result.data);
       })
       .catch((error) => {
-        toast.error(error);
+        toast.error("Failed to get data: " + error.message);
       });
   };
 
@@ -44,7 +44,7 @@ const AddBooks = () => {
       Description: description,
       Price: price,
       Quantity: quantity,
-      DateOfAddition: dataOfadition,
+      DataOfAdition: dataOfadition,
     };
     axios
       .post(url, data)
@@ -212,12 +212,7 @@ const AddBooks = () => {
       <Row>
         {" "}
         <Col>
-          <Button
-            variant="dark"
-            className="btn-addBooks"
-            type="submit"
-            onClick={handleSave}
-          >
+          <Button variant="dark" className="btn-addBooks" onClick={handleSave}>
             Add
           </Button>
         </Col>
