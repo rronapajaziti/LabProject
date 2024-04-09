@@ -25,7 +25,7 @@ namespace WebApplication1.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    DataOfadition = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DateOfadition = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
