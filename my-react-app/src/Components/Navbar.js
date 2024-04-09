@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/dropdown";
 import "bootstrap/js/dist/collapse";
+import { Link } from "react-router-dom";
 
 import { Toggle } from "../App";
 
@@ -33,33 +34,33 @@ function Navbar({ Toggle }) {
       <div className="collapse navbar-collapse " id="navbarSupportedContent">
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
           <li className="nav-item dropdown ">
-            <a
+            <Link
               className="nav-link dropdown-toggle"
-              href="a"
+              to="/a"
               id="navbarDropdown"
               data-bs-toggle="dropdown"
               aria-haspopup="false"
               aria-expanded="true"
             >
               Readtopia
-            </a>
+            </Link>
             <div
               className="dropdown-menu sidebarColor-bg me-2"
               aria-labelledby="navbarDropdown"
             >
-              <a className="dropdown-item " href="#">
+              <Link className="dropdown-item " to="/profile">
                 Profile
-              </a>
-              <a className="dropdown-item" href="#">
+              </Link>
+              <Link className="dropdown-item" to="/Settings">
                 Settings
-              </a>
-              <a className="dropdown-item" href="#">
+              </Link>
+              <Link className="dropdown-item" to="/LogOut">
                 Log out
-              </a>
+              </Link>
               <hr className="dropdown-divider" />
-              <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="/SEH">
                 Something else here
-              </a>
+              </Link>
             </div>
           </li>
 

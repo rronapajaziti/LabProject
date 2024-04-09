@@ -1,10 +1,9 @@
 import React from "react";
 import Navbar from "./Components/Navbar";
 
-function Home({ Toggle }) {
+function Home() {
   return (
     <div>
-      <Navbar Toggle={Toggle} />
       <div className="container-fluid">
         <div className=" row g-3 my-2">
           <div className="col-md-3">

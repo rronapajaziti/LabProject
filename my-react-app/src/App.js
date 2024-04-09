@@ -7,6 +7,8 @@ import Home from "./Home";
 import Books from "./Dashboard-Pages/Books";
 import { Routes, Route } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
+import Navbar from "./Components/Navbar";
+import AddBooks from "./Components/AddBooks";
 
 function App() {
   const [toggle, setToggle] = useState(true);
@@ -25,8 +27,10 @@ function App() {
         )}
         {toggle && <div className="col-4 col-md-2"></div>}
         <div className="col">
+          <Navbar Toggle={Toggle} />
           <Routes>
             <Route path="/" element={<Home Toggle={Toggle} />} />
+            <Route path="/add-books" element={<AddBooks />} />
             {/* <Route path="/Staff" element={<Staff />} /> */}
             <Route path="/Books" element={<Books />} />
             {/* <Route path="/Categories" element={<Categories />} />
