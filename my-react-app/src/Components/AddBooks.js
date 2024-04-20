@@ -3,6 +3,7 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const AddBooks = () => {
   const [isbn, setISBN] = useState("");
@@ -15,6 +16,7 @@ const AddBooks = () => {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [dataOfadition, setDateOfAddition] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -52,6 +54,7 @@ const AddBooks = () => {
         getData();
         clear();
         toast.success("Book has been added");
+        setSuccess(true);
       })
       .catch((error) => {
         toast.error("Failed to add Book: " + error.message);
@@ -212,9 +215,15 @@ const AddBooks = () => {
       <Row>
         {" "}
         <Col>
-          <Button variant="dark" className="btn-addBooks" onClick={handleSave}>
-            Add
-          </Button>
+          <Link to="/Books">
+            <Button
+              variant="dark"
+              className="btn-addBooks"
+              onClick={handleSave}
+            >
+              Add
+            </Button>
+          </Link>
         </Col>
         <Col>
           <Button variant="dark" className="btn-addBooks" onClick={handleClear}>
