@@ -74,20 +74,22 @@ const handleEdit = (staffID) => {
 
 //delete
 
+
 const handleDelete = (StaffID) => {
-    if(window.confirm("Are you sure you want to delete this member of Staff? ")) {
-        axios
-            .delete(`https://localhost:7200/api/Staff/${StaffID}`)
-            .then((result) => {
-                if(result.status === 200){
-                    toast.success("Staff has been successfully deleted!");
-                }
-            })
-            .catch((error) => {
-                toast.error("Failed to delete this member: "+error.message)
-            });
+    if (window.confirm("Are you sure you want to delete this Staff member") == true) {
+      axios
+        .delete(`https://localhost:7200/api/Staff/${StaffID}`)
+        .then((result) => {
+          if (result.status === 200) {
+            toast.success("Staff member has been deleted");
+          }
+        })
+        .catch((error) => {
+          toast.error("Failed to delete staff memeber: " + error.message);
+        });
     }
-};
+  };
+
 
 
 const handleUpdate = () => {
@@ -144,52 +146,61 @@ return(
 
         </div>
         <Table striped bordered hover className="tables">
-            <thread className = "table-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Birthdate</th>
-                    <th>Contact Number</th>
-                    <th>Position</th>
-                    <th>Employment Status</th>
-                    <th>Joining Date</th>
-                    <th>Salary</th>
-                    <th>Performance Rating</th>
-                </tr>
-            </thread>
-            <tbody>
+  <thead className="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Birthdate</th>
+      <th>Contact Number</th>
+      <th>Position</th>
+      <th>Employment Status</th>
+      <th>Joining Date</th>
+      <th>Salary</th>
+      <th>Performance Rating</th>
+      <th colSpan={2}>Actions</th> 
+    </tr>
+  </thead>
+  <tbody>
     {data && data.length > 0 ? (
-        data.map((item, index) => (
-            <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{item.name}</td>
-                <td>{item.surname}</td>
-                <td>{item.birthdate}</td>
-                <td>{item.contactNumber}</td>
-                <td>{item.position}</td>
-                <td>{item.employmentStatus}</td>
-                <td>{item.joiningDate}</td>
-                <td>{item.salary}</td>
-                <td>{item.performanceRating}</td>
-                <td colspan={2} classname="btn">
-                    <Button variant="outline-dark" className="btn-edit" onClick={() => handleEdit(item.StaffID)}>
-                        Edit
-                    </Button>
-                    <Button variant="outline-dark" className="btn-delete" onClick={() => handleEdit(item.StaffID)}>
-                        Delete
-                    </Button>
-                </td>
-            </tr>
-        ))
-    ) : (
-        <tr>
-            <td colSpan="10">Loading...</td>
+      data.map((item, index) => (
+        <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{item.name}</td>
+          <td>{item.surname}</td>
+          <td>{item.birthdate}</td>
+          <td>{item.contactNumber}</td>
+          <td>{item.position}</td>
+          <td>{item.employmentStatus}</td>
+          <td>{item.joiningDate}</td>
+          <td>{item.salary}</td>
+          <td>{item.performanceRating}</td>
+          <td colSpan={2} className="btn">
+            <Button
+              variant="outline-dark"
+              className="btn-edit"
+              onClick={() => handleEdit(item.StaffID)}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="outline-dark"
+              className="btn-delete"
+              onClick={() => handleDelete(item.StaffID)}
+            >
+              Delete
+            </Button>
+          </td>
         </tr>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="11">Loading...</td>
+      </tr>
     )}
-</tbody>
+  </tbody>
+</Table>
 
-        </Table>
         <Modal 
             show={show}
             onHide={handleClose}
