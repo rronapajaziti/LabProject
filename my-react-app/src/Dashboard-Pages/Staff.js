@@ -48,7 +48,7 @@ const getData = () => {
 
 const handleEdit = (staffID) => {
     handleShow();
-    setEditStaffId(staffID);
+    setEditStaffID(staffID);
     axios
 
     .get(`https://localhost:7200/api/Staff/${staffID}`)
@@ -81,7 +81,6 @@ const handleDelete = (StaffID) => {
             .then((result) => {
                 if(result.status === 200){
                     toast.success("Staff has been successfully deleted!");
-                    getData;
                 }
             })
             .catch((error) => {
@@ -288,7 +287,7 @@ return(
                                     type="text"
                                     placeholder="Enter Performance Rating"
                                     value={editPerformanceRating}
-                                    onChange={(e) => setEditPerformanceRating(e.target.value)}
+                                    onChange={(e) => setEditPerformaceRating(e.target.value)}
                                 />
                             </Form.Group>
                         </Col>

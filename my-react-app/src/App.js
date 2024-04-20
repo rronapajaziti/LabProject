@@ -11,6 +11,8 @@ import Navbar from "./Components/Navbar";
 import AddBooks from "./Components/AddBooks";
 import AddCategories from "./Components/AddCategories";
 import Categories from "./Dashboard-Pages/Categories";
+import AddStaff from "./Components/AddStaff";
+import Staff from "./Dashboard-Pages/Staff";
 
 function App() {
   const [toggle, setToggle] = useState(true);

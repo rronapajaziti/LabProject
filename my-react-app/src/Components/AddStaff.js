@@ -3,7 +3,6 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
 
 
 const AddStaff = () =>{
@@ -54,7 +53,7 @@ const AddStaff = () =>{
           getData();
           clear();
           toast.success("Staff has been added successfully!");
-          setSuccess(true);
+          
         })
         .catch((error) => {
           toast.error("Failed to add Staff: " + error.message);
@@ -87,7 +86,7 @@ const AddStaff = () =>{
                             type="text"
                             placeholder="Enter Name"
                             name="Name"
-                            value={Name}
+                            value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </Form.Group>
@@ -99,7 +98,7 @@ const AddStaff = () =>{
                             type="text"
                             placeholder="Enter Surname"
                             name="Surname"
-                            value={Surname}
+                            value={surname}
                             onChange={(e) => setSurname(e.target.value)}
                         />
                     </Form.Group>
@@ -113,7 +112,7 @@ const AddStaff = () =>{
                             type="date"
                             placeholder="Enter Birthdate"
                             name="Birthdate"
-                            value={Birthdate}
+                            value={birthdate}
                             onChange={(e) => setBirthdate(e.target.value)}
                         />
                     </Form.Group>
@@ -201,26 +200,15 @@ const AddStaff = () =>{
                 </Col>
             </Row>
             <Row>
-                {" "}
-                <Col>
-                  <Link to="/Books">
-                    <Button
-                      variant="dark"
-                      className="btn-addBooks"
-                      onClick={handleSave}
-                    >
-                      Add
-                    </Button>
-                  </Link>
-                </Col>
-                <Col>
-                  <Button variant="dark" className="btn-addBooks" onClick={handleClear}>
-                    Clear
-                  </Button>
-                </Col>
-            </Row>
+            <Col>
+                <Button variant="primary" onClick={handleSave}>Add Staff</Button>
+            </Col>
+            <Col>
+                <Button variant="secondary" onClick={handleClear}>Clear</Button>
+            </Col>
+        </Row>
         </Form>
     );
 };
 
-export default AddStaff
+export default AddStaff;
