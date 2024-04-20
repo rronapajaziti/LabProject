@@ -91,7 +91,7 @@ const handleDelete = (StaffID) => {
 
 
 const handleUpdate = () => {
-    const url = `https://localhost:7200/api/Book/${editStaffID}`;
+    const url = `https://localhost:7200/api/Staff/${editStaffID}`;
     const data = {
         StaffID: editStaffID, 
         Name: editName,
@@ -159,33 +159,36 @@ return(
                 </tr>
             </thread>
             <tbody>
-                {data && data.length > 0 
-                    ? data.map((item, index) => {
-                        return(
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{item.name}</td>
-                                <td>{item.surname}</td>
-                                <td>{item.birthdate}</td>
-                                <td>{item.contactNumber}</td>
-                                <td>{item.position}</td>
-                                <td>{item.employmentStatus}</td>
-                                <td>{item.joiningDate}</td>
-                                <td>{item.salary}</td>
-                                <td>{item.performanceRating}</td>
-                                <td colspan={2} classname="btn">
-                                    <Button variant="outline-dark" className="btn-edit" onClick={() => handleEdit(item.StaffID)}>
-                                        Edit
-                                    </Button>
-                                    <Button variant="outline-dark" className="btn-delete" onClick={() => handleEdit(item.StaffID)}>
-                                        Delete
-                                    </Button>
-                                </td>
-                            </tr>
-                        );
-                    })
-                : "Loading..."}
-            </tbody>
+    {data && data.length > 0 ? (
+        data.map((item, index) => (
+            <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{item.name}</td>
+                <td>{item.surname}</td>
+                <td>{item.birthdate}</td>
+                <td>{item.contactNumber}</td>
+                <td>{item.position}</td>
+                <td>{item.employmentStatus}</td>
+                <td>{item.joiningDate}</td>
+                <td>{item.salary}</td>
+                <td>{item.performanceRating}</td>
+                <td colspan={2} classname="btn">
+                    <Button variant="outline-dark" className="btn-edit" onClick={() => handleEdit(item.StaffID)}>
+                        Edit
+                    </Button>
+                    <Button variant="outline-dark" className="btn-delete" onClick={() => handleEdit(item.StaffID)}>
+                        Delete
+                    </Button>
+                </td>
+            </tr>
+        ))
+    ) : (
+        <tr>
+            <td colSpan="10">Loading...</td>
+        </tr>
+    )}
+</tbody>
+
         </Table>
         <Modal 
             show={show}

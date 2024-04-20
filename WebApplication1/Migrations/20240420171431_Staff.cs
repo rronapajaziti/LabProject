@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace WebApplication1.Migrations.Staff
+namespace WebApplication1.Migrations
 {
     /// <inheritdoc />
     public partial class Staff : Migration

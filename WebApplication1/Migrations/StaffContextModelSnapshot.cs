@@ -8,7 +8,7 @@ using WebApplication1.Models;
 
 #nullable disable
 
-namespace WebApplication1.Migrations.Staff
+namespace WebApplication1.Migrations
 {
     [DbContext(typeof(StaffContext))]
     partial class StaffContextModelSnapshot : ModelSnapshot

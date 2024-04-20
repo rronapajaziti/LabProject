@@ -74,7 +74,7 @@ namespace WebApplication1.Controllers
 
         [HttpDelete("{StaffID}")]
 
-        public async Task<ActionResult> DeleteStaff(int StafID)
+        public async Task<ActionResult> DeleteStaff(int StaffID)
         {
             if (_staffContext.Staff == null)
             {
