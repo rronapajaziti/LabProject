@@ -49,7 +49,7 @@ namespace WebApplication1.Controllers
             }
         }
         [HttpPost]
-        public async Task<ActionResult<Category>> PostBook(Category category)
+        public async Task<ActionResult<Category>> PostCategory(Category category)
         {
             _categoriesContext.Categories.Add(category);
             await _categoriesContext.SaveChangesAsync();
@@ -59,7 +59,7 @@ namespace WebApplication1.Controllers
 
 
         [HttpPut("{Categoryid}")]
-        public async Task<ActionResult> PutBook(int Categoryid, Category category)
+        public async Task<ActionResult> PutCategory(int Categoryid, Category category)
         {
             if (Categoryid != category.CategoryID)
             {
