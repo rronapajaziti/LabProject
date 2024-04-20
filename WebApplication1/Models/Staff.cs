@@ -1,7 +1,7 @@
 namespace WebApplication1.Models
 {
-    public class Category {
-        public int StafID { get; set; }     
+    public class Staff {
+        public int StaffID { get; set; }     
         public String Name { get; set; }     
         public String Surname { get; set; }     
         public Date Birthdate { get; set; }
