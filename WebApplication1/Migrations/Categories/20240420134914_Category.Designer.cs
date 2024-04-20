@@ -12,7 +12,7 @@ using WebApplication1.Models;
 namespace WebApplication1.Migrations.Categories
 {
     [DbContext(typeof(CategoriesContext))]
-    [Migration("20240420112613_Category")]
+    [Migration("20240420134914_Category")]
     partial class Category
     {
         /// <inheritdoc />
