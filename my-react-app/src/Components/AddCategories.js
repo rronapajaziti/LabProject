@@ -4,18 +4,18 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AddCateegories = () => {
+const AddCategories = () => {
     const [categoryID, setCategoryID] = useState("");
-    const [category, setCategory] = useState("");
-    const [languange, setLanguange] = useState("");
+    const [categoryName, setCategoryName] = useState(""); 
+    const [language, setLanguage] = useState("");
     const [createdAt, setCreatedAt] = useState("");
 
     const handleSave = () => {
         const url = 'https://localhost:7200/api/Category';
         const data = {
             CategoryID: categoryID,
-            Category: category,
-            Languange: languange,
+            CategoryName: categoryName,
+            Language: language,
             CreatedAt: createdAt
         };
         axios.post(url,data)
@@ -30,8 +30,8 @@ const AddCateegories = () => {
 
     const clear = () => {
         setCategoryID("");
-        setCategory("");
-        setLanguange("");
+        setCategoryName(""); 
+        setLanguage("");
         setCreatedAt("");
     };
 
@@ -60,8 +60,8 @@ const AddCateegories = () => {
                     <Form.Control
                         type="text"
                         placeholder="Enter Category Name"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        value={categoryName}
+                        onChange={(e) => setCategoryName(e.target.value)}
                     />
                 </Form.Group>
             </Col>
