@@ -10,6 +10,8 @@ namespace WebApplication1.Controllers
     public class StaffController : ControllerBase
     {
         private readonly StaffContext _staffContext;
+        private readonly int StaffID;
+
         public StaffController(StaffContext staffContext)
         {
             _staffContext = staffContext;

@@ -10,6 +10,6 @@ namespace WebApplication1.Models
 
         }
         public DbSet<Category> Categories { get; set; }
-        
+
     }
 }
