@@ -32,7 +32,7 @@ function App() {
           <Navbar Toggle={Toggle} />
           <Routes>
             <Route path="/" element={<Home Toggle={Toggle} />} />
-            {/*<Route path="/add-staff" element={<AddStaff />} />*/}
+            <Route path="/add-staff" element={<AddStaff />} />
             <Route path="/add-books" element={<AddBooks />} />
             <Route path="/add-categories" element={<AddCategories />} />
             <Route path="/Staff" element={<Staff />} />
