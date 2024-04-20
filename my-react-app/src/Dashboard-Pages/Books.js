@@ -74,7 +74,7 @@ const Books = () => {
         .delete(`https://localhost:7200/api/Book/${id}`)
         .then((result) => {
           if (result.status === 200) {
-            toast.success("Employee has been deleted");
+            toast.success("Book has been deleted");
           }
         })
         .catch((error) => {
