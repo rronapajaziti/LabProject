@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using WebApplication1.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,9 +14,12 @@ builder.Services.AddDbContext<BooksContext>(options =>
 
 options.UseSqlServer(builder.Configuration.GetConnectionString("CRUDS")));
 
+
 builder.Services.AddDbContext<CategoriesContext>(options =>
 
 options.UseSqlServer(builder.Configuration.GetConnectionString("CRUDS")));
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

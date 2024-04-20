@@ -10,7 +10,7 @@ namespace WebApplication1.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly CategoriesContext _categoriesContext;
-     
+
 
         public CategoryController(CategoriesContext categoriesContext)
         {

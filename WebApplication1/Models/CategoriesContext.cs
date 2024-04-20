@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Models
 {
@@ -11,5 +10,6 @@ namespace WebApplication1.Models
 
         }
         public DbSet<Category> Categories { get; set; }
+        
     }
 }
