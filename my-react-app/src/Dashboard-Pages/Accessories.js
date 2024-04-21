@@ -1,80 +1,89 @@
 import React, {useState, useEffect, Fragment} from "react";
 import Table from "react-bootstrap/Table";
+import Modal from "react-bootstrap/Modal";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 import "../style.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
+
+
 
 const Accessories = () => {
-        const [Show, setShow] = useState(false);
-
-        const handleClose = () => setShow(false);
-        const handleShow = () => setShow (true);
-
-        const[editAccessoriesID, setEditAccessoriesID] = useState("");
-        const[editImage, setEditImage] = useState("");
-        const[editName, setEditName] = useState("");
-        const[editSeller, setEditSeller] = useState("");
-        const[editDescription, setEditDescription] = useState("");
-        const[editDimensions, setEditDimensions] = useState("");
-        const[editPrice, setEditPrice] = useState("");
-        const[editQuantity, setEditQuantity] = useState("");
     
-        const [Data, setData] = useState([])
+    const [show, setShow] = useState(false);
 
-        useEffect(() =>{
-            getData();
-        },[]);
-        const getData = () => {
-            axios
-                .get('`https://localhost:7200/api/Accessories')
-                .then((result)=> {
-                    setData(result.Data);
-                })
-                .catch((error)=> {
-                    console.log(error);
-                });
-        };
 
-        //Edit
-        const handleEdit = (AccessoriesID)=> {
-            handleShow();
-            setEditAccessoriesID(AccessoriesID);
-            axios
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow (true);
 
-            .get(`https://localhost:7200/api/Accessories/${AccessoriesID}`)
-            .then((result)=> {
-                setEditAccessoriesID(result.data.AccessoriesID);
-                setEditImage(result.data.Image);
-                setEditName(result.data.Name);
-                setEditSeller(result.data.Seller);
-                setEditDescription(result.data.Description);
-                setEditDimensions(result.data.Dimensions);
-                setEditPrice(result.data.Price);
-                setEditQuantity(result.data.Quantity);
-            })
+    const[editAccessoriesID, setEditAccessoriesID] = useState("");
+    const[editImage, setEditImage] = useState("");
+    const[editName, setEditName] = useState("");
+    const[editSeller, setEditSeller] = useState("");
+    const[editDescription, setEditDescription] = useState("");
+    const[editDimensions, setEditDimensions] = useState("");
+    const[editPrice, setEditPrice] = useState("");
+    const[editQuantity, setEditQuantity] = useState("");
 
-            .catch((error) => {
-                toast.error("Failed to get Acessory: "+ error.message);
-            });
-        };
+    const [Data, setData] = useState([])
 
-        //Delete
-        const handleDelete = (AccessoriesID)=> {
-            if (window.confirm("Are you sure you want to delete this Accessory item?") == true){
+    useEffect(() =>{
+        getData();},
+    []);
 
-            axios
-            .delete(`https://localhost:7200/api/Accessories/${AccessoriesID}`)
-            .then((result)=> {
+    const getData = () => {
+        axios
+        .get(`https://localhost:7200/api/Accessories`)
+        .then((result)=> {
+            setData(result.data);
+        })
+        .catch((error)=> {
+            console.log(error);
+        });
+    };
+
+    //Edit
+    const handleEdit = (AccessoriesID)=> {
+        handleShow();
+        setEditAccessoriesID(AccessoriesID);
+        axios
+
+        .get(`https://localhost:7200/api/Accessories/${AccessoriesID}`)
+        .then((result)=> {
+            setEditAccessoriesID(result.data.AccessoriesID);
+            setEditImage(result.data.Image);
+            setEditName(result.data.Name);
+            setEditSeller(result.data.Seller);
+            setEditDescription(result.data.Description);
+            setEditDimensions(result.data.Dimensions);
+            setEditPrice(result.data.Price);
+            setEditQuantity(result.data.Quantity);
+        })
+
+        .catch((error) => {
+            toast.error("Failed to get Acessory: "+ error.message);
+        });
+    };
+
+    //Delete
+    const handleDelete = (AccessoriesID)=> {
+        if (window.confirm("Are you sure you want to delete this Accessory item?") === true){
+
+        axios
+        .delete(`https://localhost:7200/api/Accessories/${AccessoriesID}`)
+        .then((result)=> {
 
             if (result.status ===200) {
                 toast.success("Accessory item has been deleted!");
             }
-            })
-            .catch((error) => {
-                toast.error("Failed to delete Accessory item!" + error.message);
-            });
+
+        })
+        .catch((error) => {
+            toast.error("Failed to delete Accessory item!" + error.message);
+        });
         }
     };
 
@@ -139,8 +148,8 @@ const Accessories = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {data && data.length > 0
-                    ? data.map((item, index) => {
+                {Data && Data.length > 0
+                    ? Data.map((item, index) => {
                         return (
                         <tr key={index}>
                             <td>{index + 1}</td>
@@ -158,14 +167,14 @@ const Accessories = () => {
                             <Button
                                 variant="outline-dark"
                                 className="btn-edit"
-                                onClick={() => handleEdit(item.id)}
+                                onClick={() => handleEdit(item.AccessoriesID)}
                             >
                                 Edit
                             </Button>
                             <Button
                                 variant="outline-dark"
                                 className="btn-delete"
-                                onClick={() => handleDelete(item.id)}
+                                onClick={() => handleDelete(item.AccessoriesID)}
                             >
                                 Delete
                             </Button>

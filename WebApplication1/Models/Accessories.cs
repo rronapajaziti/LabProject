@@ -1,9 +1,11 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.Models
 {
     public class Accessories
     {
+        [Key]
         public int AccessoryID { get; set; }
         public string Image { get; set; }
         public string Name { get; set; }

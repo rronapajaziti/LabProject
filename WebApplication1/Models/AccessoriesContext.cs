@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Models
 {
-    public class AccesoriesContext : DbContext
+    public class AccessoriesContext : DbContext
     {
         public AccessoriesContext(DbContextOptions<AccessoriesContext> options) : base(options)
         {
