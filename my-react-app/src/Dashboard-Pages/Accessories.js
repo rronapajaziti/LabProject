@@ -1,26 +1,119 @@
 import React, {useState, useEffect, Fragment} from "react";
 import Table from "react-bootstrap/Table";
+import { Row, Col, Form, Button } from "react-bootstrap";
+import "react-toastify/dist/ReactToastify.css";
+import "../style.css";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Accessories = () => {
+        const [Show, setShow] = useState(false);
 
-    const AccessoriesData = [
-        {
-            AccessoriesID : 1,
-            Name : 'Book Page Holder',
-            Image : 'Loading..',
-            Seller : 'Wacantik',
-            Description : 'Walnut Book Page Holder, Smooth Finish Wood Book Holder for Reading.',
-            Dimensions : '3.2"D x 0.7"W x 1.5"H',
-            Quantity : '25',
-            Price : '11.89'
+        const handleClose = () => setShow(false);
+        const handleShow = () => setShow (true);
+
+        const[editAccessoriesID, setEditAccessoriesID] = useState("");
+        const[editImage, setEditImage] = useState("");
+        const[editName, setEditName] = useState("");
+        const[editSeller, setEditSeller] = useState("");
+        const[editDescription, setEditDescription] = useState("");
+        const[editDimensions, setEditDimensions] = useState("");
+        const[editPrice, setEditPrice] = useState("");
+        const[editQuantity, setEditQuantity] = useState("");
+    
+        const [Data, setData] = useState([])
+
+        useEffect(() =>{
+            getData();
+        },[]);
+        const getData = () => {
+            axios
+                .get('`https://localhost:7200/api/Accessories')
+                .then((result)=> {
+                    setData(result.Data);
+                })
+                .catch((error)=> {
+                    console.log(error);
+                });
+        };
+
+        //Edit
+        const handleEdit = (AccessoriesID)=> {
+            handleShow();
+            setEditAccessoriesID(AccessoriesID);
+            axios
+
+            .get(`https://localhost:7200/api/Accessories/${AccessoriesID}`)
+            .then((result)=> {
+                setEditAccessoriesID(result.data.AccessoriesID);
+                setEditImage(result.data.Image);
+                setEditName(result.data.Name);
+                setEditSeller(result.data.Seller);
+                setEditDescription(result.data.Description);
+                setEditDimensions(result.data.Dimensions);
+                setEditPrice(result.data.Price);
+                setEditQuantity(result.data.Quantity);
+            })
+
+            .catch((error) => {
+                toast.error("Failed to get Acessory: "+ error.message);
+            });
+        };
+
+        //Delete
+        const handleDelete = (AccessoriesID)=> {
+            if (window.confirm("Are you sure you want to delete this Accessory item?") == true){
+
+            axios
+            .delete(`https://localhost:7200/api/Accessories/${AccessoriesID}`)
+            .then((result)=> {
+
+            if (result.status ===200) {
+                toast.success("Accessory item has been deleted!");
+            }
+            })
+            .catch((error) => {
+                toast.error("Failed to delete Accessory item!" + error.message);
+            });
         }
-    ]
+    };
 
-    const [data, setData] = useState([])
+    const handleUpdate = ()=> {
+        const url = `https://localhost:7200/api/Accessories/${editAccessoriesID}`;
+        const Data = {
+            AccessoriesID: editAccessoriesID,
+            Image: editImage,
+            Name: editName,
+            Description: editDescription,
+            Dimensions: editDimensions,
+            Price: editPrice,
+            Quantity: editQuantity,
+        };
 
-    useEffect(() =>{
-        setData(AccessoriesData);
-    },[])
+        axios
+        .put(url, Data)
+        .then((result)=> {
+            handleClose();
+            getData();
+            clear();
+            toast.success("Accessory has been updated successfully!");
+        })
+        .catch((error) => {
+            toast.error("Failed to edit Accessory: " + error.message);
+        });
+    };
+            
+    const clear =  ()=> {
+     setEditAccessoriesID("");
+    setEditImage("");
+    setEditName("");
+    setEditSeller("");
+    setEditDimensions("");
+    setEditDescription("");
+    setEditPrice("");
+    setEditQuantity("");
+    };
+
     return(
         <Fragment>
             <ToastContainer></ToastContainer>
