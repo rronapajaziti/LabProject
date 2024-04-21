@@ -14,6 +14,7 @@ import Categories from "./Dashboard-Pages/Categories";
 import AddStaff from "./Components/AddStaff";
 import Staff from "./Dashboard-Pages/Staff";
 import Accessories from "./Dashboard-Pages/Accessories";
+import AddAccessories from "./Components/AddAccessories";
 
 function App() {
   const [toggle, setToggle] = useState(true);
@@ -45,8 +46,7 @@ function App() {
             <Route path="/Accessories" element={<Accessories />} />
             
             {/* <Route path="/Categories" element={<Categories />} />
-            <Route path="/Authors" element={<Authors />} />
-            <Route path="/Acessories" element={<Acessories />} /> */}
+            <Route path="/Authors" element={<Authors />} /> */}
           </Routes>
         </div>
       </div>

@@ -25,7 +25,8 @@ const Staff = () => {
     const [editEmploymentStatus, setEditEmploymentStatus] = useState("");
     const [editJoiningDate, setEditJoiningDate] = useState("");
     const [editSalary, setEditSalary] = useState("");
-    const [editPerformanceRating, setEditPerformaceRating] = useState("");
+    const [editPerformanceRating, setEditPerformanceRating] = useState("");
+
 
 const [data, setData] = useState([]);
 useEffect (() => {
@@ -44,14 +45,14 @@ const getData = () => {
 };
 
 
+//Edit
 
-
-const handleEdit = (staffID) => {
+const handleEdit = (StaffID) => {
     handleShow();
-    setEditStaffID(staffID);
+    setEditStaffID(StaffID);
     axios
 
-    .get(`https://localhost:7200/api/Staff/${staffID}`)
+    .get(`https://localhost:7200/api/Staff/${StaffID}`)
     .then((result) => {
         setEditName(result.data.name);
         setEditSurname(result.data.surname);
@@ -60,7 +61,7 @@ const handleEdit = (staffID) => {
         setEditPosition(result.data.position);
         setEditEmploymentStatus(result.data.employmentStatus);
         setEditJoiningDate(result.data.joiningDate);
-        setEditPerformaceRating(result.data.performaceRating);
+        setEditPerformanceRating(result.data.performaceRating);
         setEditSalary(result.data.salary);
         
     
@@ -129,7 +130,7 @@ const clear = () => {
     setEditPosition("");
     setEditEmploymentStatus("");
     setEditJoiningDate("");
-    setEditPerformaceRating("");
+    setEditPerformanceRating("");
     setEditSalary("");
 };
 
@@ -301,7 +302,7 @@ return(
                                     type="text"
                                     placeholder="Enter Performance Rating"
                                     value={editPerformanceRating}
-                                    onChange={(e) => setEditPerformaceRating(e.target.value)}
+                                    onChange={(e) => setEditPerformanceRating(e.target.value)}
                                 />
                             </Form.Group>
                         </Col>

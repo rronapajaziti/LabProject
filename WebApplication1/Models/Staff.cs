@@ -9,7 +9,7 @@ namespace WebApplication1.Models
         public String Position {get; set; }
         public String EmploymentStatus {get; set; }
         public DateTime JoiningDate {get; set; }
-        public Double Salary {get; set; }
+        public decimal Salary {get; set; }
         public String PerformanceRating {get; set; }
 
     }
