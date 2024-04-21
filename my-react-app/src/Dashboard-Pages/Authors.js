@@ -24,7 +24,7 @@ const Authors = () => {
 
   const getData = () => {
     axios
-      .get(`https://localhost:7200/api/Staff`)
+      .get(`https://localhost:7200/api/Authors`)
       .then((result) => {
         setData(result.data);
       })
