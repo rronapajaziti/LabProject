@@ -24,7 +24,7 @@ namespace WebApplication1.Migrations
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EmploymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     JoiningDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Salary = table.Column<double>(type: "float", nullable: false),
+                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PerformanceRating = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

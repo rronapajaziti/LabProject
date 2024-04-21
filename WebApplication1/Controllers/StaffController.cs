@@ -54,7 +54,7 @@ namespace WebApplication1.Controllers
 
 
         [HttpPut("{StaffID}")]
-        public async Task<ActionResult> PutStaff(int CategoryID, Staff staff)
+        public async Task<ActionResult> PutStaff(int StaffID, Staff staff)
         {
             if (StaffID != staff.StaffID)
             {
