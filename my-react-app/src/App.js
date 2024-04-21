@@ -45,8 +45,7 @@ function App() {
             <Route path="/Accessories" element={<Accessories />} />
             
             {/* <Route path="/Categories" element={<Categories />} />
-            <Route path="/Authors" element={<Authors />} />
-            <Route path="/Acessories" element={<Acessories />} /> */}
+            <Route path="/Authors" element={<Authors />} /> */}
           </Routes>
         </div>
       </div>
