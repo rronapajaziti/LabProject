@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Table from "react-bootstrap/Table";
 import Modal from "react-bootstrap/Modal";
-import {Form, Button } from "react-bootstrap";
+import {Row, Col,Form, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
@@ -34,21 +34,21 @@ const Categories = () => {
       .catch((error) => {
         console.log(error);
       });
+    
   };
 
   //edit
- //edit
-const handleEdit = (categoryID) => {
-  handleShow();
-  setEditCategoryID(categoryID); // Corrected function name
-  axios
+
+  const handleEdit = (categoryID) => {
+    handleShow();
+    setEditCategoryID(categoryID); 
+    axios
     .get(`https://localhost:7200/api/Category/${categoryID}`)
     .then((result) => {
-      const { categoryID, categoryName, language, createdAt } = result.data;
-      setEditCategoryID(categoryID);
-      setEditCategoryName(categoryName);
-      setEditLanguage(language);
-      setEditCreatedAt(createdAt);
+      setEditCategoryID(result.data.categoryID);
+      setEditCategoryName(result.data.categoryName);
+      setEditLanguage(result.data.language);
+      setEditCreatedAt(result.data.createdAt);
     })
     .catch((error) => {
       toast.error("Failed to get Category: " + error.message);
@@ -58,13 +58,12 @@ const handleEdit = (categoryID) => {
 
   //delete
   const handleDelete = (categoryID) => {
-    if (window.confirm("Are you sure you want to delete this Category?")) {
+    if (window.confirm("Are you sure you want to delete this Category?") == true) {
       axios
         .delete(`https://localhost:7200/api/Category/${categoryID}`)
         .then((result) => {
           if (result.status === 200) {
             toast.success("Category has been deleted");
-            getData();
           }
         })
         .catch((error) => {
@@ -103,11 +102,13 @@ const handleEdit = (categoryID) => {
 
   return (
     <Fragment>
-      <ToastContainer />
+     <ToastContainer></ToastContainer> 
       <div className="add-button">
-        <Button variant="dark" className="btn-add" onClick={handleShow}>
+        <Link to = "/add-categories">
+        <Button variant="dark" className="btn-add" >
           Add Category
         </Button>
+        </Link>
       </div>
       <Table striped bordered hover className="tables">
         <thead className="table-dark">
@@ -121,7 +122,7 @@ const handleEdit = (categoryID) => {
           </tr>
         </thead>
         <tbody>
-          {data && data.length > 0 ? (
+          {data && data.length > 0 ? 
             data.map((item, index) => {
               return (
                 <tr key={index}>
@@ -149,28 +150,30 @@ const handleEdit = (categoryID) => {
                 </tr>
               );
             })
-          ) : (
-            <tr>
-              <td colSpan={5}>No categories found</td>
-            </tr>
-          )}
+           :"Loading..."}
         </tbody>
       </Table>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Add Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
   <Form onSubmit={handleUpdate}>
+  <Row>
+  <Col>
     <Form.Group controlId="formCategoryID">
       <Form.Label>Category ID</Form.Label>
       <Form.Control
         type="text"
         placeholder="Enter Category ID"
+        name="categoryID"
         value={editCategoryID}
-        onChange={(e) => setEditCategoryID(e.target.value)}
+        readOnly
       />
     </Form.Group>
+    </Col>
+
+    <col> 
     <Form.Group controlId="formCategoryName">
       <Form.Label>Category Name</Form.Label>
       <div>
@@ -179,28 +182,28 @@ const handleEdit = (categoryID) => {
           label="Sci-Fi"
           id="checkbox-scifi"
           checked={editCategoryName === "Sci-Fi"}
-          onChange={() => setEditCategoryName("Sci-Fi")}
+          onChange={(e) => setEditCategoryName("Sci-Fi")}
         />
         <Form.Check
           type="checkbox"
           label="Romance"
           id="checkbox-romance"
           checked={editCategoryName === "Romance"}
-          onChange={() => setEditCategoryName("Romance")}
+          onChange={(e) => setEditCategoryName("Romance")}
         />
         <Form.Check
           type="checkbox"
           label="Fantasy"
           id="checkbox-fantasy"
           checked={editCategoryName === "Fantasy"}
-          onChange={() => setEditCategoryName("Fantasy")}
+          onChange={(e) => setEditCategoryName("Fantasy")}
         />
         <Form.Check
           type="checkbox"
           label="History"
           id="checkbox-history"
           checked={editCategoryName === "History"}
-          onChange={() => setEditCategoryName("History")}
+          onChange={(e) => setEditCategoryName("History")}
         />
       </div>
     </Form.Group>
@@ -213,7 +216,7 @@ const handleEdit = (categoryID) => {
           name="language"
           id="radio-albanian"
           checked={editLanguage === "Albanian"}
-          onChange={() => setEditLanguage("Albanian")}
+          onChange={(e) => setEditLanguage("Albanian")}
         />
         <Form.Check
           type="radio"
@@ -221,18 +224,20 @@ const handleEdit = (categoryID) => {
           name="language"
           id="radio-english"
           checked={editLanguage === "English"}
-          onChange={() => setEditLanguage("English")}
+          onChange={(e) => setEditLanguage("English")}
         />
       </div>
     </Form.Group>
+  </col>
+  </Row>
   </Form>
 </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="outline-dark" onClick={handleClose}>
+          <Button variant="outline-dark"  className="btn-Close" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="outline-dark" onClick={handleUpdate}>
+          <Button variant="outline-dark"  className="btn-update" onClick={handleUpdate}>
             Save
           </Button>
         </Modal.Footer>
