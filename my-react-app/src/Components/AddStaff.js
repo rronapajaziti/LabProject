@@ -3,6 +3,7 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom"
 
 const AddStaff = () => {
   const [name, setName] = useState("");
@@ -31,7 +32,7 @@ const AddStaff = () => {
     axios
       .post(`https://localhost:7200/api/Staff`, formData)
       .then((result) => {
-        clearForm();
+        clear();
         toast.success("Staff has been added successfully!");
       })
       .catch((error) => {
@@ -39,7 +40,7 @@ const AddStaff = () => {
       });
   };
 
-  const clearForm = () => {
+  const clear = () => {
     setName("");
     setSurname("");
     setBirthdate("");
@@ -50,11 +51,13 @@ const AddStaff = () => {
     setSalary("");
     setPerformanceRating("");
   };
+  const handleClear = () => {
+    clear();
+  };
 
   return (
-    <div className="container">
-      <h2>Add Staff</h2>
-      <Form>
+    <Form className="StaffForm ">
+     <ToastContainer></ToastContainer>
         <Row>
           <Col>
             <Form.Group controlId="formName">
@@ -84,7 +87,7 @@ const AddStaff = () => {
             <Form.Group controlId="formBirthdate">
               <Form.Label>Birthdate</Form.Label>
               <Form.Control
-                type="date"
+                type="text"
                 value={birthdate}
                 onChange={(e) => setBirthdate(e.target.value)}
               />
@@ -131,7 +134,7 @@ const AddStaff = () => {
             <Form.Group controlId="formJoiningDate">
               <Form.Label>Joining Date</Form.Label>
               <Form.Control
-                type="date"
+                type="text"
                 value={joiningDate}
                 onChange={(e) => setJoiningDate(e.target.value)}
               />
@@ -141,7 +144,7 @@ const AddStaff = () => {
             <Form.Group controlId="formSalary">
               <Form.Label>Salary</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
                 placeholder="Enter Salary"
                 value={salary}
                 onChange={(e) => setSalary(e.target.value)}
@@ -160,18 +163,30 @@ const AddStaff = () => {
                 onChange={(e) => setPerformanceRating(e.target.value)}
               />
             </Form.Group>
+            </Col>
+        </Row>
+        <Row>
+          {" "}
+          <Col>
+            <Link to="/Staff">
+              <Button
+                variant="dark"
+                className="btn-addStaff"
+                onClick={handleSave}
+              >
+                Add
+              </Button>
+            </Link>
+          </Col>
+          <Col>
+            <Button variant="dark" className="btn-addStaff" onClick={handleClear}>
+              Clear
+            </Button>
           </Col>
         </Row>
-        <Button variant="primary" onClick={handleSave}>
-          Add Staff
-        </Button>
-        <Button variant="secondary" onClick={clearForm}>
-          Clear
-        </Button>
-      </Form>
-      <ToastContainer />
-    </div>
-  );
+    </Form>
+);
 };
 
 export default AddStaff;
+
