@@ -216,17 +216,13 @@ const AddBooks = () => {
         {" "}
         <Col>
           <Link to="/Books">
-            <Button
-              variant="dark"
-              className="btn-addBooks"
-              onClick={handleSave}
-            >
+            <Button variant="dark" className="btn-add" onClick={handleSave}>
               Add
             </Button>
           </Link>
         </Col>
         <Col>
-          <Button variant="dark" className="btn-addBooks" onClick={handleClear}>
+          <Button variant="dark" className="btn-add" onClick={handleClear}>
             Clear
           </Button>
         </Col>

@@ -30,7 +30,7 @@ function App() {
           <div className="col-4 col-md-2 min-vh-100 sidebarColor-bg position-fixed">
             <Sidebar />
           </div>
-        )}                          
+        )}
         {toggle && <div className="col-4 col-md-2"></div>}
         <div className="col">
           <Navbar Toggle={Toggle} />
@@ -40,13 +40,12 @@ function App() {
             <Route path="/add-books" element={<AddBooks />} />
             <Route path="/add-categories" element={<AddCategories />} />
             <Route path="/add-Accessories" element={<AddAccessories />} />
+
             <Route path="/Staff" element={<Staff />} />
             <Route path="/Books" element={<Books />} />
-            <Route path="/Categories" element={<Categories />}/>
+            <Route path="/Categories" element={<Categories />} />
             <Route path="/Accessories" element={<Accessories />} />
-            
-            {/* <Route path="/Categories" element={<Categories />} />
-            <Route path="/Authors" element={<Authors />} /> */}
+            {/* <Route path="/Authors" element={<Authors />} /> */}
           </Routes>
         </div>
       </div>
