@@ -12,7 +12,7 @@ using WebApplication1.Models;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(StaffContext))]
-    [Migration("20240422000925_Staff")]
+    [Migration("20240422105050_Staff")]
     partial class Staff
     {
         /// <inheritdoc />
