@@ -11,7 +11,7 @@ using WebApplication1.Models;
 namespace WebApplication1.Migrations.Accessories
 {
     [DbContext(typeof(AccessoriesContext))]
-    [Migration("20240421143855_Accessories")]
+    [Migration("20240422111522_Accessories")]
     partial class Accessories
     {
         /// <inheritdoc />
@@ -36,8 +36,9 @@ namespace WebApplication1.Migrations.Accessories
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Dimensions")
-                        .HasColumnType("int");
+                    b.Property<string>("Dimensions")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .IsRequired()
@@ -47,8 +48,8 @@ namespace WebApplication1.Migrations.Accessories
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");

@@ -20,9 +20,9 @@ namespace WebApplication1.Migrations.Accessories
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Seller = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Dimensions = table.Column<int>(type: "int", nullable: false),
+                    Dimensions = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
