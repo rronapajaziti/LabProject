@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const AddStaff = () => {
   const [name, setName] = useState("");
@@ -16,7 +16,23 @@ const AddStaff = () => {
   const [salary, setSalary] = useState("");
   const [performanceRating, setPerformanceRating] = useState("");
 
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+    axios
+      .get(`https://localhost:7200/api/Staff`)
+      .then((result) => {
+        setData(result.data);
+      })
+      .catch((error) => {
+        toast.error("Failed to get data: " + error.message);
+      });
+  };
   const handleSave = () => {
+    const url = "https://localhost:7200/api/Staff";
     const formData = {
       Name: name,
       Surname: surname,
@@ -32,6 +48,7 @@ const AddStaff = () => {
     axios
       .post(`https://localhost:7200/api/Staff`, formData)
       .then((result) => {
+        getData();
         clear();
         toast.success("Staff has been added successfully!");
       })
