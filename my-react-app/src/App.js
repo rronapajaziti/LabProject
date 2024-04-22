@@ -15,6 +15,9 @@ import AddStaff from "./Components/AddStaff";
 import Staff from "./Dashboard-Pages/Staff";
 import Accessories from "./Dashboard-Pages/Accessories";
 import AddAccessories from "./Components/AddAccessories";
+import AddAuthors from "./Components/AddAuthors";
+import Authors from "./Dashboard-Pages/Authors";
+
 
 function App() {
   const [toggle, setToggle] = useState(true);
@@ -40,10 +43,12 @@ function App() {
             <Route path="/add-books" element={<AddBooks />} />
             <Route path="/add-categories" element={<AddCategories />} />
             <Route path="/add-Accessories" element={<AddAccessories />} />
+            <Route path="/add-Authors" element={<AddAuthors />} />
 
             <Route path="/Staff" element={<Staff />} />
             <Route path="/Books" element={<Books />} />
             <Route path="/Categories" element={<Categories />} />
+            <Route path="/Authors" element={<Authors />} />
             <Route path="/Accessories" element={<Accessories />} />
             {/* <Route path="/Authors" element={<Authors />} /> */}
           </Routes>
