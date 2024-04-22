@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -10,56 +12,51 @@ namespace WebApplication1.Controllers
     public class StaffController : ControllerBase
     {
         private readonly StaffContext _staffContext;
-        private readonly int StaffID;
 
         public StaffController(StaffContext staffContext)
         {
             _staffContext = staffContext;
-            
         }
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Staff>>> getStaff()
+        public async Task<ActionResult<IEnumerable<Staff>>> GetStaff()
         {
-            if(_staffContext.Staff == null)
+            var staffList = await _staffContext.Staff.ToListAsync();
+            if (staffList == null || staffList.Count == 0)
             {
-                return NotFound();
+                return NotFound("No staff members found.");
             }
-            return await _staffContext.Staff.ToListAsync();
+            return Ok(staffList);
         }
+
         [HttpGet("{StaffID}")]
-        public async Task<ActionResult<Staff>> GetStaff(int StaffID)
+        public async Task<ActionResult<Staff>> GetStaffByID(int StaffID)
         {
-            if (_staffContext.Staff == null)
-            {
-                return NotFound();
-            }
             var staff = await _staffContext.Staff.FindAsync(StaffID);
             if (staff == null)
             {
-                return NotFound();
+                return NotFound("Staff member not found.");
             }
-            else
-            {
-                return staff;
-            }
+            return Ok(staff);
         }
+
         [HttpPost]
         public async Task<ActionResult<Staff>> PostStaff(Staff staff)
         {
             _staffContext.Staff.Add(staff);
             await _staffContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetStaff), new { StaffID = staff.StaffID }, staff);
+            return CreatedAtAction(nameof(GetStaffByID), new { StaffID = staff.StaffID }, staff);
         }
 
-
         [HttpPut("{StaffID}")]
-        public async Task<ActionResult> PutStaff(int StaffID, Staff staff)
+        public async Task<IActionResult> PutStaff(int StaffID, Staff staff)
         {
             if (StaffID != staff.StaffID)
             {
-                return BadRequest();
+                return BadRequest("Staff ID mismatch.");
             }
+
             _staffContext.Entry(staff).State = EntityState.Modified;
             try
             {
@@ -67,27 +64,25 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                throw;
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating staff.");
             }
-            return Ok();
+
+            return NoContent();
         }
 
         [HttpDelete("{StaffID}")]
-
-        public async Task<ActionResult> DeleteStaff(int StaffID)
+        public async Task<IActionResult> DeleteStaff(int StaffID)
         {
-            if (_staffContext.Staff == null)
-            {
-                return NotFound();
-            }
             var staff = await _staffContext.Staff.FindAsync(StaffID);
             if (staff == null)
             {
-                return NotFound();
+                return NotFound("Staff member not found.");
             }
-            _staffContext.Staff.Remove((Staff)staff);
+
+            _staffContext.Staff.Remove(staff);
             await _staffContext.SaveChangesAsync();
-            return Ok();
+
+            return Ok("Staff member deleted successfully.");
         }
     }
 }
