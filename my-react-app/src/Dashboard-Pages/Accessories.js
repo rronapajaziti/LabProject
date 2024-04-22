@@ -141,6 +141,7 @@ const Accessories = () => {
             <th>Dimensions</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -153,12 +154,12 @@ const Accessories = () => {
                     <td>
                       <img src={item.image} alt="Acessories" />
                     </td>
-                    <td>{item.Name}</td>
-                    <td>{item.Seller}</td>
-                    <td>{item.Description}</td>
-                    <td>{item.Dimensions}</td>
-                    <td>{item.Price}</td>
-                    <td>{item.Quantity}</td>
+                    <td>{item.name}</td>
+                    <td>{item.seller}</td>
+                    <td>{item.description}</td>
+                    <td>{item.dimensions}</td>
+                    <td>{item.price}</td>
+                    <td>{item.quantity}</td>
                     <td colSpan={2} className="btn">
                       <Button
                         variant="outline-dark"
