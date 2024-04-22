@@ -109,9 +109,9 @@ const Authors = () => {
     <Fragment>
       <ToastContainer />
       <div className="add-button">
-        <Link to="/add-staff">
+        <Link to="/add-author">
           <Button variant="dark" className="btn-add">
-            Add Staff
+            Add Author
           </Button>
         </Link>
       </div>
@@ -176,7 +176,7 @@ const Authors = () => {
           <Form onSubmit={handleUpdate}>
             <Row>
               <Col>
-                <Form.Group controlId="fromauthorID">
+                <Form.Group controlId="fromAuthorID">
                   <Form.Label>Author ID</Form.Label>
                   <Form.Control
                     type="text"
